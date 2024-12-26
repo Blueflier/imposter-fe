@@ -14,7 +14,7 @@ function App() {
   const [playerId, setPlayerId] = useState<string>('');
 
   useEffect(() => {
-    const newSocket = io('YOUR_BACKEND_URL'); // Replace with your actual backend URL
+    const newSocket = io(import.meta.env.VITE_BACKEND_URL); // Using environment variable
     setSocket(newSocket);
 
     newSocket.on('gameState', (state: GameState) => {
