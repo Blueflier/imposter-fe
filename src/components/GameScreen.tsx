@@ -5,9 +5,11 @@ interface GameScreenProps {
   subject: string;
   message: string;
   isImposter: boolean;
+  isHost: boolean;
+  onNextRound: () => void;
 }
 
-export function GameScreen({ subject, message, isImposter }: GameScreenProps) {
+export function GameScreen({ subject, message, isImposter, isHost, onNextRound }: GameScreenProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
@@ -30,6 +32,15 @@ export function GameScreen({ subject, message, isImposter }: GameScreenProps) {
                 You are the IMPOSTER! Try to blend in without getting caught!
               </p>
             </div>
+          )}
+
+          {isHost && (
+            <button
+              onClick={onNextRound}
+              className="mt-8 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+            >
+              Next Round
+            </button>
           )}
         </div>
       </div>

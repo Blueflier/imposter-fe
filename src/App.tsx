@@ -38,6 +38,10 @@ function App() {
     socket?.emit('startGame');
   };
 
+  const handleNextRound = () => {
+    socket?.emit('nextRound');
+  };
+
   const isHost = gameState.players.find(p => p.id === playerId)?.isHost || false;
 
   if (!playerId) {
@@ -60,6 +64,8 @@ function App() {
         subject={gameState.subject}
         message={gameState.message}
         isImposter={gameState.isImposter || false}
+        isHost={isHost}
+        onNextRound={handleNextRound}
       />
     );
   }
